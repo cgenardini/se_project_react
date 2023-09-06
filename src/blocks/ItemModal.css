@@ -1,0 +1,35 @@
+
+
+ .popup-item{
+    width: 498px;
+    height: 610px;
+    border-radius: 16px;
+    background-color: #ffffff;
+ 
+    overflow: hidden;
+    position: relative;
+ }
+
+ .popup-item__image {
+  display: block;
+ }
+
+ .popup-item__footer {
+   text-align: left;
+   margin-left: 32px;
+   
+ }
+
+
+
+ .popup-item__title{
+    margin: 25px 0 12px;
+    font-size: 20px;
+   font-weight: 700;
+ }
+
+ .popup-item__weather{
+    margin:  0 0 32px;
+    font-size: 20px;
+   font-weight: 700;
+ }

@@ -1,0 +1,29 @@
+.cards__container {
+margin: 0 40px;
+
+}
+
+.cards__header {
+    text-align: left;
+    margin: 0 0 34px;
+    font-size: 20px;
+    line-height: 1.25;
+
+}
+
+.cards__list {
+list-style: none;
+padding: 0;
+display: grid;
+grid-template-columns: repeat(auto-fit, 328px);
+column-gap: 17px;
+row-gap: 20px;
+min-height: auto;
+justify-content: center;
+}
+
+@media screen and (max-width: 580px){
+    .cards__header{
+        font-size: 15px;
+    }
+}

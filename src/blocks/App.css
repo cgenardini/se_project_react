@@ -1,0 +1,27 @@
+@font-face {
+  font-family: 'CabinetGroteskMed';
+  src: url('../fonts/CabinetGrotesk-Medium.otf') format('opentype')
+}
+
+@font-face {
+  font-family: 'CabinetGroteskBlack';
+  src: url('../fonts/CabinetGrotesk-Black.otf') format('opentype');
+}
+
+@font-face {
+  font-family: 'CabinetGroteskBold';
+  src: url('../fonts/CabinetGrotesk-Bold.otf') format('opentype');
+}
+
+
+.App {
+  
+  text-align: center;
+  margin: 0 auto;
+  background-color: #F3F3F3;
+  min-height: 100vh;
+  font-family: 'CabinetGroteskMed';
+  
+  
+}
+

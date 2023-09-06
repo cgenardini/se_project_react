@@ -1,0 +1,99 @@
+.header {
+
+ font-weight: 700;
+   display: flex;
+   font-size: 20px;
+   
+   line-height: 24px;
+   padding-top: 32px;
+   margin: 0 40px 28px;
+  
+   
+}
+
+.header__logo {
+    width: 89px;
+    height: 40px;
+   
+}
+
+.header__date {
+ 
+    font-size: 20px;
+    margin: 11px 0 5px 24px;
+    
+
+}
+
+.header__button {
+
+
+align-self: center;
+margin-left: auto;
+border: none;
+background: transparent;
+padding: 0;
+font-weight: 700;
+font-size: 20px;
+font-family: 'CabinetGroteskMed';
+cursor: pointer;
+
+}
+
+.header__name {
+    font-size: 20px;
+    margin: 8px 12px 7px 15px;
+    
+
+}
+
+.header__avatar {
+    height: 40px;
+    width: 40px;
+}
+
+@media screen and (max-width: 850px){
+
+    .header__name {
+        font-size: 15px;
+        margin: 8px 12px 7px 15px;
+        
+    
+    }
+
+
+    .header__button {
+        font-size: 15px;
+    }
+
+
+    .header__date{
+        font-size: 15px;
+    }
+
+}
+
+@media screen and (max-width: 580px){
+.header {
+    margin: 0 40px;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.header__date {
+    margin: 11px auto 5px;
+}
+
+.header__button {
+    margin: 0 auto;
+}
+
+.header__avatar {
+    margin: 0 auto;
+}
+
+.header__logo{
+    margin: 0 auto;
+}
+
+}

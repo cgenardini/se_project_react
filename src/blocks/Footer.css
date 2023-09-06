@@ -1,0 +1,18 @@
+
+
+.footer {
+    margin: auto 40px 0;
+    display: flex;
+    justify-content: space-between;
+    line-height: 1.25;
+   font-weight: 500;
+   font-size: 16px;
+   
+
+}
+
+@media screen and (max-width: 580px){
+.footer{
+    font-size: 12px;
+}
+}

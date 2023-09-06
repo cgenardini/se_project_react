@@ -1,0 +1,115 @@
+.popup-container {
+max-width: 496px;
+  width: 100%;
+  min-height: 436px;
+  background-color: white;
+  border-radius: 10px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  
+
+}
+
+
+.popup-form__header {
+text-align: start;
+  font-size: 16px;
+  line-height: 1.21;
+  font-weight: 700;
+  margin: 28px 0 0 28px;
+  font-size: 16px;
+ 
+}
+
+.popup-form__fieldset {
+    margin: 0 28px 36px;
+  
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: start;
+    max-width: 100%;
+    border: none;
+  
+    line-height: 1.21;
+}
+
+.popup-form__input-wrap {
+   position: relative;
+   width: 100%;
+}
+
+.popup-form__label {
+    text-align: start;
+    margin: 24px 0 12px;
+    font-size: 16px;
+}
+
+.popup-form__input {
+    padding-bottom: 13px;
+    border: 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.5);
+    color: #000000;
+    width: 100%;
+    font-size: 16px;
+    line-height: 1.25;
+    padding-bottom: 4px;
+}
+
+
+
+.popup-form__radio-button-wrap {
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: start;
+}
+
+.popup-form__radio-button {
+margin: 0;
+height: 16px;
+width: 16px;
+accent-color: #000000;
+}
+
+
+.popup-form__radio-label-wrap{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 8px;
+  
+}
+
+.popup-form__radio-label-wrap:last-child{
+    margin-bottom: 0;
+}
+
+.radio-button__label{
+    font-size: 16px;
+    font-weight: 700;
+    margin-left: 8px;
+    opacity: 50%;
+}
+
+.radio-button__label_checked {
+    opacity: 100;
+}
+
+.popup-form__button {
+    width: 124px;
+    height: 36px;
+    padding: 0;
+    margin: 0 0 36px 28px;
+    background-color: #000000;
+    color: #ffffff;
+    opacity: 30%;
+    border-radius: 4px;
+    font-family: "CabinetGroteskMed";
+    font-size: 16px;
+    font-weight: 700;
+   
+
+}
