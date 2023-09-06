@@ -16,7 +16,7 @@ import {
   getCurrentCity,
   getClothingTemp,
   getDay,
-} from "./WeatherApi";
+} from "./weatherApi.js";
 import "../blocks/ModalWithForm.css";
 import { currentDate, userInfo } from "../utils/constants";
 
