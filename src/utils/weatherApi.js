@@ -1,6 +1,6 @@
-import { latitude, longitude, weatherApiKey } from "../utils/constants";
+import { latitude, longitude, weatherApiKey } from "./constants";
 
-export function WeatherData() {
+export function getWeatherData() {
   const weatherApi =
     fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=imperial&appid=${weatherApiKey} 
     `).then((res) => {
@@ -13,18 +13,18 @@ export function WeatherData() {
   return weatherApi;
 }
 
-export function GetWeatherTemp(data) {
+export function getWeatherTemp(data) {
   const main = data.main;
   const temp = main.temp;
   return Math.ceil(temp);
 }
 
-export function GetCurrentCity(data) {
+export function getCurrentCity(data) {
   const city = data.name;
   return city;
 }
 
-export function GetClothingTemp(temp) {
+export function getClothingTemp(temp) {
   if (temp >= 86) {
     return "hot";
   } else if (temp >= 66 && temp <= 85) {
@@ -34,7 +34,7 @@ export function GetClothingTemp(temp) {
   }
 }
 
-export function GetDay(data) {
+export function getDay(data) {
   const sys = data.sys;
   const set = sys.sunset * 1000;
   const rise = sys.sunrise * 1000;

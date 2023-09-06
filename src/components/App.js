@@ -11,12 +11,12 @@ import ItemModal from "./ItemModal";
 import ModalWithForm from "./ModalWithForm";
 import AddGarmentForm from "./AddGarmentForm";
 import {
-  WeatherData,
-  GetWeatherTemp,
-  GetCurrentCity,
-  GetClothingTemp,
-  GetDay,
-} from "./WeatherApi.js";
+  getWeatherData,
+  getWeatherTemp,
+  getCurrentCity,
+  getClothingTemp,
+  getDay,
+} from "../utils/weatherApi.js";
 import "../blocks/ModalWithForm.css";
 import { currentDate, userInfo } from "../utils/constants";
 
@@ -58,11 +58,11 @@ function App() {
   }, []);
 
   useEffect(() => {
-    WeatherData().then((data) => {
-      const apiTemp = GetWeatherTemp(data);
-      const apiCity = GetCurrentCity(data);
-      const apiClothingTemp = GetClothingTemp(apiTemp);
-      const apiDay = GetDay(data);
+    getWeatherData().then((data) => {
+      const apiTemp = getWeatherTemp(data);
+      const apiCity = getCurrentCity(data);
+      const apiClothingTemp = getClothingTemp(apiTemp);
+      const apiDay = getDay(data);
       setTemp(apiTemp);
       setCity(apiCity);
       setClothingTemp(apiClothingTemp);
