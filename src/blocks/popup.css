@@ -1,0 +1,42 @@
+.popup {
+   
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    width: 100%;
+   
+   
+  
+  }
+  
+
+
+  .popup__close {
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    position: absolute;
+    top: 24px;
+    right: 24px;
+  
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 20px;
+    width: 20px;
+    background-color: transparent;
+ }
+
+ .popup__close-item {
+    background-image: url(../images/Close-Icon.svg);
+ }
+
+ .popup__close-form {
+    background-image: url(../images/Close-Icon-Gray.svg);
+ }
