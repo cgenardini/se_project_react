@@ -63,7 +63,6 @@ function App() {
       const apiCity = GetCurrentCity(data);
       const apiClothingTemp = GetClothingTemp(apiTemp);
       const apiDay = GetDay(data);
-
       setTemp(apiTemp);
       setCity(apiCity);
       setClothingTemp(apiClothingTemp);
