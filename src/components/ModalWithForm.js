@@ -13,7 +13,7 @@ function ModalWithForm({
       className={`
     popup popup_type_${popupName}`}
     >
-      <div className="popup-container">
+      <div className="popup-form__container">
         <h3 className="popup-form__header">{formTitle}</h3>
         <form className="popup-form">{children}</form>
 

@@ -135,3 +135,10 @@ export const userInfo = {
   name: "Cassandra Genardini",
   avatar: avatar,
 };
+
+export const processServerResponse = (res) => {
+  if (res.ok) {
+    return res.json();
+  }
+  return Promise.reject(`Error: ${res.status}`);
+};

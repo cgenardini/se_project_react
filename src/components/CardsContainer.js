@@ -1,5 +1,5 @@
 import "../blocks/CardsContainer.css";
-import "../blocks/card.css";
+import "../blocks/Card.css";
 import { defaultClothingItems } from "../utils/constants";
 import Card from "./Card";
 
@@ -15,7 +15,9 @@ function CardsContainer({ temp, onCardSelect, clothingTemp }) {
       </h3>
       <ul className="cards__list">
         {filteredCards.map((item) => {
-          return <Card item={item} onCardSelect={onCardSelect} />;
+          return (
+            <Card item={item} onCardSelect={onCardSelect} key={item._id} />
+          );
         })}
       </ul>
     </section>

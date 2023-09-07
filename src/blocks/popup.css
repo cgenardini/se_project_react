@@ -1,5 +1,4 @@
 .popup {
-   
     display: flex;
     justify-content: center;
     align-items: center;
@@ -11,9 +10,6 @@
     bottom: 0;
     background-color: rgba(0, 0, 0, 0.5);
     width: 100%;
-   
-   
-  
   }
   
 
@@ -35,8 +31,17 @@
 
  .popup__close-item {
     background-image: url(../images/Close-Icon.svg);
+    
+ }
+
+ .popup__close-item:hover {
+   opacity: 60%;
  }
 
  .popup__close-form {
     background-image: url(../images/Close-Icon-Gray.svg);
+ }
+
+ .popup__close-form:hover {
+    opacity: 60%;
  }
