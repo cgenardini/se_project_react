@@ -1,7 +1,7 @@
 import "../blocks/CardsContainer.css";
-import "../blocks/Card.css";
+import "../blocks/CardItem.css";
 import { defaultClothingItems } from "../utils/constants";
-import Card from "./Card";
+import CardItem from "./CardItem";
 
 function CardsContainer({ temp, onCardSelect, clothingTemp }) {
   const filteredCards = defaultClothingItems.filter((item) => {
@@ -16,7 +16,7 @@ function CardsContainer({ temp, onCardSelect, clothingTemp }) {
       <ul className="cards__list">
         {filteredCards.map((item) => {
           return (
-            <Card item={item} onCardSelect={onCardSelect} key={item._id} />
+            <CardItem item={item} onCardSelect={onCardSelect} key={item._id} />
           );
         })}
       </ul>

@@ -1,6 +1,6 @@
-import "../blocks/Card.css";
+import "../blocks/CardItem.css";
 
-function Card({ item, onCardSelect }) {
+function CardItem({ item, onCardSelect }) {
   return (
     <li className="card" id={item._id}>
       <div className="card__header">
@@ -18,4 +18,4 @@ function Card({ item, onCardSelect }) {
   );
 }
 
-export default Card;
+export default CardItem;
