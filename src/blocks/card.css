@@ -14,16 +14,11 @@
 
 
 
-.card__header {
-
+.card__header { 
     display: flex;
     position: absolute;
     right: 113px;
-    top: 16px;
-   
-    
-    
-    
+    top: 16px;    
 }
 
 .card__description {
