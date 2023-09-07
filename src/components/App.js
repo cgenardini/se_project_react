@@ -49,7 +49,7 @@ function App() {
 
   useEffect(() => {
     const handleEscClose = (e) => {
-      if (e.keyCode === 27) {
+      if (e.key === "Escape") {
         setActivePopup("");
       }
     };
@@ -58,16 +58,18 @@ function App() {
   }, []);
 
   useEffect(() => {
-    getWeatherData().then((data) => {
-      const apiTemp = getWeatherTemp(data);
-      const apiCity = getCurrentCity(data);
-      const apiClothingTemp = getClothingTemp(apiTemp);
-      const apiDay = getDay(data);
-      setTemp(apiTemp);
-      setCity(apiCity);
-      setClothingTemp(apiClothingTemp);
-      setIsDay(apiDay);
-    });
+    getWeatherData()
+      .then((data) => {
+        const apiTemp = getWeatherTemp(data);
+        const apiCity = getCurrentCity(data);
+        const apiClothingTemp = getClothingTemp(apiTemp);
+        const apiDay = getDay(data);
+        setTemp(apiTemp);
+        setCity(apiCity);
+        setClothingTemp(apiClothingTemp);
+        setIsDay(apiDay);
+      })
+      .catch(console.error);
   }, []);
 
   return (
