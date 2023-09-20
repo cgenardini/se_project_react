@@ -2,11 +2,11 @@ import React from "react";
 import "../blocks/CardsContainer.css";
 import "../blocks/CardItem.css";
 import CardsList from "./CardsList";
-import { CurrentTempUnitContext } from "../contexts/CurrentTemperatureUnitContext";
+import { CurrentTemperatureUnitContext } from "../contexts/CurrentTemperatureUnitContext";
 import { ClothingCardsContext } from "../contexts/ClothingCardsContext";
 
 function CardsContainer({ onCardSelect }) {
-  const { temp } = React.useContext(CurrentTempUnitContext);
+  const { temp } = React.useContext(CurrentTemperatureUnitContext);
   const { filteredCards } = React.useContext(ClothingCardsContext);
   return (
     <section className="cards__container">

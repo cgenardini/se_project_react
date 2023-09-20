@@ -28,7 +28,7 @@ import {
 
 import { getItems, addItem, deleteItem } from "../utils/cardApi";
 
-import { CurrentTempUnitContext } from "../contexts/CurrentTemperatureUnitContext";
+import { CurrentTemperatureUnitContext } from "../contexts/CurrentTemperatureUnitContext";
 import { ClothingCardsContext } from "../contexts/ClothingCardsContext";
 
 import { Route, Switch } from "react-router-dom/cjs/react-router-dom.min";
@@ -131,7 +131,7 @@ function App() {
     <div className="App" onClick={handleClickOutsideClose}>
       <UserInfoContext.Provider value={{ userInfo }}>
         <ClothingCardsContext.Provider value={{ filteredCards, clothingItems }}>
-          <CurrentTempUnitContext.Provider
+          <CurrentTemperatureUnitContext.Provider
             value={{ currentTempUnit, handleToggleSwitch, temp }}
           >
             <Header
@@ -174,7 +174,7 @@ function App() {
             )}
 
             <Footer />
-          </CurrentTempUnitContext.Provider>
+          </CurrentTemperatureUnitContext.Provider>
         </ClothingCardsContext.Provider>
       </UserInfoContext.Provider>
     </div>
