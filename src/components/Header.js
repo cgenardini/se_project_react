@@ -1,7 +1,7 @@
 import React from "react";
 import "../blocks/Header.css";
 import Switch from "./Switch";
-import { UserInfoContext } from "../context/UserInfoContext";
+import { UserInfoContext } from "../contexts/UserInfoContext";
 import { Link } from "react-router-dom";
 
 function Header({ logoSrc, currentCity, currentDate, onClick }) {

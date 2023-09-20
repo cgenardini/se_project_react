@@ -1,6 +1,6 @@
 import React from "react";
 import "../blocks/ProfileSideBar.css";
-import { UserInfoContext } from "../context/UserInfoContext";
+import { UserInfoContext } from "../contexts/UserInfoContext";
 import { Link } from "react-router-dom";
 
 function ProfileSideBar() {

@@ -2,8 +2,8 @@ import React from "react";
 import "../blocks/CardsContainer.css";
 import "../blocks/CardItem.css";
 import CardsList from "./CardsList";
-import { CurrentTempUnitContext } from "../context/CurrentTempUnitContext";
-import { ClothingCardsContext } from "../context/ClothingCardsContext";
+import { CurrentTempUnitContext } from "../contexts/CurrentTempUnitContext";
+import { ClothingCardsContext } from "../contexts/ClothingCardsContext";
 
 function CardsContainer({ onCardSelect }) {
   const { temp } = React.useContext(CurrentTempUnitContext);

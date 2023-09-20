@@ -1,6 +1,6 @@
 import React from "react";
 import "../blocks/ProfileCardsContainer.css";
-import { ClothingCardsContext } from "../context/ClothingCardsContext";
+import { ClothingCardsContext } from "../contexts/ClothingCardsContext";
 import CardsList from "./CardsList";
 
 function ProfileCardsContainer({ onClick, onCardSelect }) {

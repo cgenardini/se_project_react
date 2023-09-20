@@ -28,11 +28,11 @@ import {
 
 import { getItems, addItem, deleteItem } from "../utils/cardApi";
 
-import { CurrentTempUnitContext } from "../context/CurrentTempUnitContext";
-import { ClothingCardsContext } from "../context/ClothingCardsContext";
+import { CurrentTempUnitContext } from "../contexts/CurrentTempUnitContext";
+import { ClothingCardsContext } from "../contexts/ClothingCardsContext";
 
 import { Route, Switch } from "react-router-dom/cjs/react-router-dom.min";
-import { UserInfoContext } from "../context/UserInfoContext";
+import { UserInfoContext } from "../contexts/UserInfoContext";
 
 function App() {
   const [clothingItems, setClothingItems] = useState(defaultClothingItems);
