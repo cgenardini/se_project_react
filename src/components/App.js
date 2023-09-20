@@ -28,7 +28,7 @@ import {
 
 import { getItems, addItem, deleteItem } from "../utils/cardApi";
 
-import { CurrentTempUnitContext } from "../contexts/CurrentTempUnitContext";
+import { CurrentTempUnitContext } from "../contexts/CurrentTemperatureUnitContext";
 import { ClothingCardsContext } from "../contexts/ClothingCardsContext";
 
 import { Route, Switch } from "react-router-dom/cjs/react-router-dom.min";

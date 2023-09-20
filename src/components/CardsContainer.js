@@ -2,7 +2,7 @@ import React from "react";
 import "../blocks/CardsContainer.css";
 import "../blocks/CardItem.css";
 import CardsList from "./CardsList";
-import { CurrentTempUnitContext } from "../contexts/CurrentTempUnitContext";
+import { CurrentTempUnitContext } from "../contexts/CurrentTemperatureUnitContext";
 import { ClothingCardsContext } from "../contexts/ClothingCardsContext";
 
 function CardsContainer({ onCardSelect }) {

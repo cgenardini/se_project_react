@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
-import { CurrentTempUnitContext } from "../contexts/CurrentTempUnitContext";
+import { CurrentTempUnitContext } from "../contexts/CurrentTemperatureUnitContext";
 import "../blocks/Switch.css";
 
 function Switch() {
