@@ -49,7 +49,7 @@ function App() {
     return item.weather.toLowerCase() === clothingTemp;
   });
 
-  const handleToggleSwitch = () => {
+  const handleToggleSwitchChange = () => {
     if (currentTempUnit === "F") {
       setCurrentTempUnit("C");
     } else {
@@ -126,13 +126,13 @@ function App() {
       })
       .catch(console.error);
   }, [currentTempUnit]);
-
+  const currentTemperatureUnit = currentTempUnit;
   return (
     <div className="App" onClick={handleClickOutsideClose}>
       <UserInfoContext.Provider value={{ userInfo }}>
         <ClothingCardsContext.Provider value={{ filteredCards, clothingItems }}>
           <CurrentTemperatureUnitContext.Provider
-            value={{ currentTempUnit, handleToggleSwitch, temp }}
+            value={{ currentTemperatureUnit, handleToggleSwitchChange, temp }}
           >
             <Header
               logoSrc={logo}
