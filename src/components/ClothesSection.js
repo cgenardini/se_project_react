@@ -3,7 +3,7 @@ import "../blocks/ProfileCardsContainer.css";
 import { ClothingCardsContext } from "../contexts/ClothingCardsContext";
 import CardsList from "./CardsList";
 
-function ProfileCardsContainer({ onClick, onCardSelect }) {
+function ClothesSection({ onClick, onCardSelect }) {
   const { clothingItems } = React.useContext(ClothingCardsContext);
   return (
     <div className="profile-container">
@@ -26,4 +26,4 @@ function ProfileCardsContainer({ onClick, onCardSelect }) {
   );
 }
 
-export default ProfileCardsContainer;
+export default ClothesSection;

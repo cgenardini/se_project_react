@@ -10,7 +10,7 @@ import Profile from "./Profile";
 import Footer from "./Footer";
 import ItemModal from "./ItemModal";
 
-import AddGarmentForm from "./AddGarmentForm";
+import AddItemModal from "./AddItemModal";
 import {
   getWeatherData,
   getWeatherTempF,
@@ -166,7 +166,7 @@ function App() {
             )}
 
             {activePopup === "create" && (
-              <AddGarmentForm
+              <AddItemModal
                 isOpen={activePopup === "create"}
                 onAddItem={handleAddItem}
                 onClose={handleClosePopup}

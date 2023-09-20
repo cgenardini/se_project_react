@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import { CurrentTempUnitContext } from "../contexts/CurrentTemperatureUnitContext";
 import "../blocks/Switch.css";
 
-function Switch() {
+function ToggleSwitch() {
   const { currentTempUnit, handleToggleSwitch } = React.useContext(
     CurrentTempUnitContext
   );
@@ -43,4 +43,4 @@ function Switch() {
   );
 }
 
-export default Switch;
+export default ToggleSwitch;

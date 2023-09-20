@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import ModalWithForm from "./ModalWithForm";
 import "../blocks/ModalWithForm.css";
 
-function AddGarmentForm({ isOpen, onAddItem, onClose }) {
+function AddItemModal({ isOpen, onAddItem, onClose }) {
   const [selectedOption, setSelectedOption] = useState("");
   const [name, setName] = useState("");
   const [imageUrl, setImageUrl] = useState("");
@@ -129,4 +129,4 @@ function AddGarmentForm({ isOpen, onAddItem, onClose }) {
   );
 }
 
-export default AddGarmentForm;
+export default AddItemModal;

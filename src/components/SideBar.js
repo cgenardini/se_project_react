@@ -3,7 +3,7 @@ import "../blocks/ProfileSideBar.css";
 import { UserInfoContext } from "../contexts/UserInfoContext";
 import { Link } from "react-router-dom";
 
-function ProfileSideBar() {
+function SideBar() {
   const { userInfo } = React.useContext(UserInfoContext);
   return (
     <div className="side-bar">
@@ -19,4 +19,4 @@ function ProfileSideBar() {
   );
 }
 
-export default ProfileSideBar;
+export default SideBar;

@@ -1,12 +1,12 @@
 import "../blocks/Profile.css";
-import ProfileCardsContainer from "./ProfileCardsContainer";
-import ProfileSideBar from "./ProfileSideBar";
+import ClothesSection from "./ClothesSection";
+import SideBar from "./SideBar";
 
 function Profile({ onClick, onCardSelect }) {
   return (
     <div className="profile">
-      <ProfileSideBar />
-      <ProfileCardsContainer onClick={onClick} onCardSelect={onCardSelect} />
+      <SideBar />
+      <ClothesSection onClick={onClick} onCardSelect={onCardSelect} />
     </div>
   );
 }
