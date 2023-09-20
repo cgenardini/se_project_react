@@ -1,17 +1,32 @@
+import React from "react";
 import "../blocks/Header.css";
+import Switch from "./Switch";
+import { UserInfoContext } from "../context/UserInfoContext";
+import { Link } from "react-router-dom";
 
-function Header({ logoSrc, currentCity, currentDate, avatar, onClick }) {
+function Header({ logoSrc, currentCity, currentDate, onClick }) {
+  const { userInfo } = React.useContext(UserInfoContext);
+
   return (
     <header className="header">
       <img alt="image" src={logoSrc} className="header__logo"></img>
       <h1 className="header__date">
         {currentDate}, {currentCity}
       </h1>
+      <Switch />
       <button type="button" className="header__button" onClick={onClick}>
         + Add clothes
       </button>
-      <h1 className="header__name">Cassandra Genardini</h1>
-      <img className="header__avatar" alt="avatar" src={avatar}></img>
+      <Link to="/profile" className="header__name">
+        {userInfo.name}
+      </Link>
+      <Link to="/">
+        <img
+          className="header__avatar"
+          alt="avatar"
+          src={userInfo.avatar}
+        ></img>
+      </Link>
     </header>
   );
 }

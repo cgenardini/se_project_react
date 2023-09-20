@@ -13,10 +13,15 @@ export function getWeatherData() {
   return weatherApi;
 }
 
-export function getWeatherTemp(data) {
+export function getWeatherTempF(data) {
   const main = data.main;
   const temp = main.temp;
   return Math.ceil(temp);
+}
+
+export function getWeatherTempC(data) {
+  const TempF = getWeatherTempF(data);
+  return Math.ceil(TempF * (5 / 9));
 }
 
 export function getCurrentCity(data) {

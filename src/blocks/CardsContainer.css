@@ -22,6 +22,10 @@ min-height: auto;
 justify-content: center;
 }
 
+.cards__list-profile {
+    justify-content: start;
+}
+
 @media screen and (max-width: 580px){
     .cards__header{
         font-size: 15px;

@@ -1,0 +1,28 @@
+
+.profile-container__header {
+    display: flex;
+   
+    font-size: 20px;
+}
+
+.profile-container__title {
+margin: 0;
+font-weight: 700;
+}
+
+.profile-container__button {
+    margin-left: 20px;
+    padding: 0;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    font-size: 20px;
+    font-family: 'CabinetGroteskMed';
+    font-weight: 700;
+    opacity: 60%;
+}
+
+.profile-container__button:hover {
+    opacity: 100%;
+}
+

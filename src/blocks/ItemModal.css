@@ -15,8 +15,11 @@
  }
 
  .popup-item__footer {
+  display: flex;
+  justify-content: space-between;
    text-align: left;
    margin-left: 32px;
+   font-size: 20px;
    
  }
 
@@ -29,7 +32,19 @@
  }
 
  .popup-item__weather{
-    margin:  0 0 32px;
-    font-size: 20px;
+    margin:  0 0 auto;
+   
    font-weight: 700;
+ }
+
+ .popup-item__delete-button {
+  color: red;
+  margin: 25px 32px 0 0;
+  padding: 0;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  max-height: 24px;
+  font-size: 20px;
+  font-family: 'CabinetGroteskMed';
  }

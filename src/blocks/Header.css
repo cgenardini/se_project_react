@@ -29,7 +29,7 @@
 
 
 align-self: center;
-margin-left: auto;
+margin-left: 20px;
 border: none;
 background: transparent;
 padding: 0;
@@ -47,13 +47,23 @@ opacity: 60%;
 .header__name {
     font-size: 20px;
     margin: 8px 12px 7px 15px;
-    
+    text-decoration: none;
+    color: black;
+    cursor: pointer;
 
+}
+
+.header__name:hover {
+    opacity: 60%;
 }
 
 .header__avatar {
     height: 40px;
     width: 40px;
+}
+
+.header__avatar:hover {
+    opacity: 80%;
 }
 
 @media screen and (max-width: 850px){

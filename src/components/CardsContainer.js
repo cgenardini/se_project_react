@@ -1,25 +1,17 @@
+import React from "react";
 import "../blocks/CardsContainer.css";
 import "../blocks/CardItem.css";
-import { defaultClothingItems } from "../utils/constants";
-import CardItem from "./CardItem";
+import CardsList from "./CardsList";
+import { CurrentTempUnitContext } from "../context/CurrentTempUnitContext";
+import { ClothingCardsContext } from "../context/ClothingCardsContext";
 
-function CardsContainer({ temp, onCardSelect, clothingTemp }) {
-  const filteredCards = defaultClothingItems.filter((item) => {
-    return item.weather.toLowerCase() === clothingTemp;
-  });
-
+function CardsContainer({ onCardSelect }) {
+  const { temp } = React.useContext(CurrentTempUnitContext);
+  const { filteredCards } = React.useContext(ClothingCardsContext);
   return (
     <section className="cards__container">
-      <h3 className="cards__header">
-        Today is {temp}°F / You may want to wear:
-      </h3>
-      <ul className="cards__list">
-        {filteredCards.map((item) => {
-          return (
-            <CardItem item={item} onCardSelect={onCardSelect} key={item._id} />
-          );
-        })}
-      </ul>
+      <h3 className="cards__header">Today is {temp} / You may want to wear:</h3>
+      <CardsList onCardSelect={onCardSelect} cards={filteredCards} />
     </section>
   );
 }

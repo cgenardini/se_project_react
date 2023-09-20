@@ -7,6 +7,7 @@ function ModalWithForm({
   popupName,
   children,
   onClose,
+  onSubmit,
 }) {
   return (
     <section
@@ -15,17 +16,17 @@ function ModalWithForm({
     >
       <div className="popup-form__container">
         <h3 className="popup-form__header">{formTitle}</h3>
-        <form className="popup-form">{children}</form>
+        <form onSubmit={onSubmit}>
+          {children}
 
-        <button
-          type="submit"
-          id="add_submit-button"
-          className="popup-form__button popup-form__button_disabled"
-          disabled
-        >
-          {buttonText}
-        </button>
-
+          <button
+            type="submit"
+            id="add_submit-button"
+            className="popup-form__button popup-form__button_disabled"
+          >
+            {buttonText}
+          </button>
+        </form>
         <button
           type="button"
           className="popup__close popup__close-form"

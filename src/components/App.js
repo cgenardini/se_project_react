@@ -1,4 +1,4 @@
-import react, { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 
 import "../blocks/App.css";
 
@@ -6,27 +6,56 @@ import logo from "../images/wtwr°.svg";
 
 import Header from "./Header";
 import Main from "./Main";
+import Profile from "./Profile";
 import Footer from "./Footer";
 import ItemModal from "./ItemModal";
-import ModalWithForm from "./ModalWithForm";
+
 import AddGarmentForm from "./AddGarmentForm";
 import {
   getWeatherData,
-  getWeatherTemp,
+  getWeatherTempF,
   getCurrentCity,
   getClothingTemp,
   getDay,
+  getWeatherTempC,
 } from "../utils/weatherApi.js";
 import "../blocks/ModalWithForm.css";
-import { currentDate, userInfo } from "../utils/constants";
+import {
+  currentDate,
+  userInfo,
+  defaultClothingItems,
+} from "../utils/constants";
+
+import { getItems, addItem, deleteItem } from "../utils/cardApi";
+
+import { CurrentTempUnitContext } from "../context/CurrentTempUnitContext";
+import { ClothingCardsContext } from "../context/ClothingCardsContext";
+
+import { Route, Switch } from "react-router-dom/cjs/react-router-dom.min";
+import { UserInfoContext } from "../context/UserInfoContext";
 
 function App() {
+  const [clothingItems, setClothingItems] = useState(defaultClothingItems);
+  const [weatherApiData, setWeatherApiData] = useState({});
   const [activePopup, setActivePopup] = useState("");
   const [selectedCard, setSelectedCard] = useState({});
   const [temp, setTemp] = useState("");
   const [city, setCity] = useState("");
   const [clothingTemp, setClothingTemp] = useState("");
   const [isDay, setIsDay] = useState(true);
+  const [currentTempUnit, setCurrentTempUnit] = useState("F");
+
+  const filteredCards = clothingItems.filter((item) => {
+    return item.weather.toLowerCase() === clothingTemp;
+  });
+
+  const handleToggleSwitch = () => {
+    if (currentTempUnit === "F") {
+      setCurrentTempUnit("C");
+    } else {
+      setCurrentTempUnit("F");
+    }
+  };
 
   const handleOpenCreate = () => {
     setActivePopup("create");
@@ -47,6 +76,23 @@ function App() {
     }
   };
 
+  const handleDelete = () => {
+    const filCar = clothingItems.filter((item) => {
+      return item != selectedCard;
+    });
+    deleteItem(filCar);
+
+    setClothingItems(filCar);
+    handleClosePopup();
+  };
+
+  const handleAddItem = ({ name, imageUrl, selectedOption }) => {
+    const newItem = { name: name, link: imageUrl, weather: selectedOption };
+    addItem(newItem);
+    setClothingItems([newItem, ...clothingItems]);
+    handleClosePopup();
+  };
+
   useEffect(() => {
     const handleEscClose = (e) => {
       if (e.key === "Escape") {
@@ -60,50 +106,77 @@ function App() {
   useEffect(() => {
     getWeatherData()
       .then((data) => {
-        const apiTemp = getWeatherTemp(data);
+        setWeatherApiData(data);
+        const apiTemp = getWeatherTempF(data);
+        const apiTempF = `${getWeatherTempF(data)} °F`;
+        const apiTempC = `${getWeatherTempC(data)} °C`;
         const apiCity = getCurrentCity(data);
         const apiClothingTemp = getClothingTemp(apiTemp);
+
         const apiDay = getDay(data);
-        setTemp(apiTemp);
+
         setCity(apiCity);
         setClothingTemp(apiClothingTemp);
         setIsDay(apiDay);
+        if (currentTempUnit === "F") {
+          setTemp(apiTempF);
+        } else {
+          setTemp(apiTempC);
+        }
       })
       .catch(console.error);
-  }, []);
+  }, [currentTempUnit]);
 
   return (
     <div className="App" onClick={handleClickOutsideClose}>
-      <Header
-        logoSrc={logo}
-        currentDate={currentDate}
-        currentCity={city}
-        avatar={userInfo.avatar}
-        userName={userInfo.name}
-        onClick={handleOpenCreate}
-      />
-      <Main
-        temp={temp}
-        day={isDay}
-        weather="sunny"
-        onCardSelect={handleCardPreview}
-        clothingTemp={clothingTemp}
-      />
-      {activePopup === "preview" && (
-        <ItemModal selectedCard={selectedCard} onClose={handleClosePopup} />
-      )}
+      <UserInfoContext.Provider value={{ userInfo }}>
+        <ClothingCardsContext.Provider value={{ filteredCards, clothingItems }}>
+          <CurrentTempUnitContext.Provider
+            value={{ currentTempUnit, handleToggleSwitch, temp }}
+          >
+            <Header
+              logoSrc={logo}
+              currentDate={currentDate}
+              currentCity={city}
+              onClick={handleOpenCreate}
+            />
+            <Switch>
+              <Route path="/profile">
+                <Profile
+                  onClick={handleOpenCreate}
+                  onCardSelect={handleCardPreview}
+                />
+              </Route>
+              <Route path="/">
+                <Main
+                  temp={temp}
+                  day={isDay}
+                  weather="sunny"
+                  onCardSelect={handleCardPreview}
+                  clothingTemp={clothingTemp}
+                />
+              </Route>
+            </Switch>
+            {activePopup === "preview" && (
+              <ItemModal
+                selectedCard={selectedCard}
+                onClose={handleClosePopup}
+                handleDelete={handleDelete}
+              />
+            )}
 
-      {activePopup === "create" && (
-        <ModalWithForm
-          onClose={handleClosePopup}
-          formTitle="New Garment"
-          buttonText="Add Garment"
-        >
-          <AddGarmentForm />
-        </ModalWithForm>
-      )}
+            {activePopup === "create" && (
+              <AddGarmentForm
+                isOpen={activePopup === "create"}
+                onAddItem={handleAddItem}
+                onClose={handleClosePopup}
+              />
+            )}
 
-      <Footer />
+            <Footer />
+          </CurrentTempUnitContext.Provider>
+        </ClothingCardsContext.Provider>
+      </UserInfoContext.Provider>
     </div>
   );
 }

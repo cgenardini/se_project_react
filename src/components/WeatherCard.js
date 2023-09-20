@@ -1,7 +1,11 @@
+import React from "react";
+
 import "../blocks/WeatherCard.css";
 import { weatherOptions } from "../utils/constants";
+import { CurrentTempUnitContext } from "../context/CurrentTempUnitContext";
 
-function WeatherCard({ temp, weather, day }) {
+function WeatherCard({ weather, day }) {
+  const { temp } = React.useContext(CurrentTempUnitContext);
   const weatherOption = weatherOptions.find((option) => {
     return option.day === day && option.type === weather;
   });
@@ -10,7 +14,7 @@ function WeatherCard({ temp, weather, day }) {
 
   return (
     <section className="weather-card">
-      <h2 className="weather-card__temp">{temp}°F</h2>
+      <h2 className="weather-card__temp">{temp}</h2>
       <img className="weather__image" src={weatherUrl} alt="weather card"></img>
     </section>
   );
