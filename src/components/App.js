@@ -85,7 +85,6 @@ function App() {
   };
 
   const handleAddItem = ({ name, imageUrl, selectedOption }) => {
-    console.log(imageUrl);
     const newItem = {
       name: name,
       weather: selectedOption,

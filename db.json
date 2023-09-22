@@ -125,6 +125,12 @@
       "imageUrl": "https://images.unsplash.com/photo-1695065547424-58457a16dec2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2787&q=80",
       "weather": "warm",
       "_id": 43
+    },
+    {
+      "name": "Cassandra",
+      "imageUrl": "https://images.unsplash.com/photo-1695065547424-58457a16dec2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2787&q=80",
+      "weather": "warm",
+      "_id": 44
     }
   ]
 }

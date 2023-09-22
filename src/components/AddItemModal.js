@@ -17,7 +17,7 @@ function AddItemModal({ isOpen, onAddItem, onClose }) {
 
   const handleSetImageUrl = (e) => {
     e.preventDefault();
-    console.log(e.target.value);
+
     setImageUrl(e.target.value);
   };
 
