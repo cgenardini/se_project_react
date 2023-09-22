@@ -9,7 +9,7 @@ function ItemCard({ item, onCardSelect }) {
       </div>
       <img
         className="card__image"
-        src={item.link}
+        src={item.imageUrl}
         onClick={() => {
           onCardSelect(item);
         }}

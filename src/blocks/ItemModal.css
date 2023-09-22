@@ -12,6 +12,8 @@
 
  .popup-item__image {
   display: block;
+  max-height: 498px;
+  min-width: 498px;
  }
 
  .popup-item__footer {

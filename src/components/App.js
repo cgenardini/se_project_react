@@ -20,11 +20,7 @@ import {
   getWeatherTempC,
 } from "../utils/weatherApi.js";
 import "../blocks/ModalWithForm.css";
-import {
-  currentDate,
-  userInfo,
-  defaultClothingItems,
-} from "../utils/constants";
+import { currentDate, userInfo } from "../utils/constants";
 
 import { getItems, addItem, deleteItem } from "../utils/cardApi";
 
@@ -35,7 +31,8 @@ import { Route, Switch } from "react-router-dom/cjs/react-router-dom.min";
 import { UserInfoContext } from "../contexts/UserInfoContext";
 
 function App() {
-  const [clothingItems, setClothingItems] = useState(defaultClothingItems);
+  const [clothingItems, setClothingItems] = useState([]);
+
   const [weatherApiData, setWeatherApiData] = useState({});
   const [activePopup, setActivePopup] = useState("");
   const [selectedCard, setSelectedCard] = useState({});
@@ -80,16 +77,25 @@ function App() {
     const filCar = clothingItems.filter((item) => {
       return item != selectedCard;
     });
-    deleteItem(filCar);
+    console.log(selectedCard);
+    deleteItem(selectedCard._id);
 
     setClothingItems(filCar);
     handleClosePopup();
   };
 
   const handleAddItem = ({ name, imageUrl, selectedOption }) => {
-    const newItem = { name: name, link: imageUrl, weather: selectedOption };
-    addItem(newItem);
-    setClothingItems([newItem, ...clothingItems]);
+    console.log(imageUrl);
+    const newItem = {
+      name: name,
+      weather: selectedOption,
+      imageUrl: imageUrl,
+    };
+
+    addItem(newItem).then((item) => {
+      setClothingItems([item, ...clothingItems]);
+    });
+
     handleClosePopup();
   };
 
@@ -102,6 +108,16 @@ function App() {
     window.addEventListener("keydown", handleEscClose);
     return () => window.removeEventListener("keydown", handleEscClose);
   }, []);
+
+  useEffect(() => {
+    getItems()
+      .then((res) => {
+        setClothingItems(res);
+
+        return res;
+      })
+      .catch(console.error);
+  }, [setClothingItems]);
 
   useEffect(() => {
     getWeatherData()

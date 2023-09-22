@@ -6,7 +6,7 @@ function ItemModal({ selectedCard, onClose, handleDelete }) {
     <section className="popup">
       <div className="popup-item">
         <img
-          src={selectedCard.link}
+          src={selectedCard.imageUrl}
           alt="#"
           className="popup-item__image"
           id="container-image"

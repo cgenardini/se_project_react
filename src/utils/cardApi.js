@@ -17,20 +17,20 @@ export const getItems = () => {
   });
 };
 
-export const addItem = ({ name, link, weather }) => {
+export const addItem = ({ name, imageUrl, weather }) => {
   return request(`${baseUrl}/items`, {
     headers: headers,
     method: "POST",
     body: JSON.stringify({
       name,
-      link,
+      imageUrl,
       weather,
     }),
   });
 };
 
 export const deleteItem = (id) => {
-  return request(`${baseUrl}/cards/${id}`, {
+  return request(`${baseUrl}/items/${id}`, {
     headers: headers,
     method: "DELETE",
   });
