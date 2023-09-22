@@ -111,6 +111,7 @@ function App() {
   useEffect(() => {
     getItems()
       .then((res) => {
+        res.reverse();
         setClothingItems(res);
 
         return res;
