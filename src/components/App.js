@@ -41,6 +41,9 @@ function App() {
   const [clothingTemp, setClothingTemp] = useState("");
   const [isDay, setIsDay] = useState(true);
   const [currentTempUnit, setCurrentTempUnit] = useState("F");
+  const [isLoading, setIsLoading] = React.useState(false);
+
+  let buttonText = isLoading ? "Saving..." : "Add Garment";
 
   const filteredCards = clothingItems.filter((item) => {
     return item.weather.toLowerCase() === clothingTemp;
@@ -69,7 +72,7 @@ function App() {
 
   const handleClickOutsideClose = (evt) => {
     if (evt.target.classList.contains("popup")) {
-      setActivePopup("");
+      handleClosePopup();
     }
   };
 
@@ -77,11 +80,13 @@ function App() {
     const filCar = clothingItems.filter((item) => {
       return item != selectedCard;
     });
-    console.log(selectedCard);
-    deleteItem(selectedCard._id);
 
-    setClothingItems(filCar);
-    handleClosePopup();
+    deleteItem(selectedCard._id)
+      .then(() => {
+        setClothingItems(filCar);
+        handleClosePopup();
+      })
+      .catch(console.error);
   };
 
   const handleAddItem = ({ name, imageUrl, selectedOption }) => {
@@ -91,17 +96,21 @@ function App() {
       imageUrl: imageUrl,
     };
 
-    addItem(newItem).then((item) => {
-      setClothingItems([item, ...clothingItems]);
-    });
+    setIsLoading(true);
 
-    handleClosePopup();
+    addItem(newItem)
+      .then((item) => {
+        setClothingItems([item, ...clothingItems]);
+        handleClosePopup();
+      })
+      .catch(console.error)
+      .finally(() => setIsLoading(false));
   };
 
   useEffect(() => {
     const handleEscClose = (e) => {
       if (e.key === "Escape") {
-        setActivePopup("");
+        handleClosePopup();
       }
     };
     window.addEventListener("keydown", handleEscClose);
@@ -186,6 +195,7 @@ function App() {
                 isOpen={activePopup === "create"}
                 onAddItem={handleAddItem}
                 onClose={handleClosePopup}
+                buttonText={buttonText}
               />
             )}
 

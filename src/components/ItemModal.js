@@ -7,7 +7,7 @@ function ItemModal({ selectedCard, onClose, handleDelete }) {
       <div className="popup-item">
         <img
           src={selectedCard.imageUrl}
-          alt="#"
+          alt={selectedCard.name}
           className="popup-item__image"
           id="container-image"
         />

@@ -10,6 +10,7 @@ function ItemCard({ item, onCardSelect }) {
       <img
         className="card__image"
         src={item.imageUrl}
+        alt={item.name}
         onClick={() => {
           onCardSelect(item);
         }}

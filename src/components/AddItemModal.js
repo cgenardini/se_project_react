@@ -2,12 +2,13 @@ import React, { useState } from "react";
 import ModalWithForm from "./ModalWithForm";
 import "../blocks/ModalWithForm.css";
 
-function AddItemModal({ isOpen, onAddItem, onClose }) {
+function AddItemModal({ isOpen, onAddItem, onClose, buttonText }) {
   const [selectedOption, setSelectedOption] = useState("");
   const [name, setName] = useState("");
   const [imageUrl, setImageUrl] = useState("");
 
   const handleSubmit = (e) => {
+    e.preventDefault();
     onAddItem({ name, imageUrl, selectedOption });
   };
 
@@ -29,7 +30,7 @@ function AddItemModal({ isOpen, onAddItem, onClose }) {
       onClose={onClose}
       onSubmit={handleSubmit}
       formTitle="New Garment"
-      buttonText="Add Garment"
+      buttonText={buttonText}
     >
       <fieldset
         className="popup-form__fieldset modal__fieldset_type_edit"
@@ -46,6 +47,7 @@ function AddItemModal({ isOpen, onAddItem, onClose }) {
             minLength="1"
             maxLength="30"
             required
+            value={name}
             onChange={handleSetName}
           />
           <span className="popup-form__error" id="name-error"></span>
@@ -59,6 +61,7 @@ function AddItemModal({ isOpen, onAddItem, onClose }) {
             name="url"
             placeholder="Image URL"
             required
+            value={imageUrl}
             onChange={handleSetImageUrl}
           />
           <span className="popup-form__error" id="url-error"></span>
