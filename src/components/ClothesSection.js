@@ -7,7 +7,6 @@ import CardsList from "./CardsList";
 
 function ClothesSection({ onClick, onCardSelect, onCardLike }) {
   const { ownCards } = React.useContext(ClothingCardsContext);
-  const { currentUser } = React.useContext(UserInfoContext);
 
   return (
     <div className="profile-container">

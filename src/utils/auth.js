@@ -80,7 +80,6 @@ export const editUser = ({ name, avatar, token }) => {
     body: JSON.stringify({ name, avatar }),
   })
     .then((res) => {
-      console.log(res);
       if (res.ok) {
         return res.json();
       } else Promise.reject(`Error: ${res.status}`);
