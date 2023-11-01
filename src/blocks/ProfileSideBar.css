@@ -1,19 +1,60 @@
 .side-bar {
-display: flex;
-margin-left: 40px;
+display: inline;
+position: relative;
+}   
+
+.side-bar__info{
+    display: flex;
+    margin-left: 40px; 
 }
 
 .side-bar__name {
 font-size: 20px;
 font-weight: 700;
-margin: 0 16px 0 ;
+margin: 14px 8px 0 16px;
 }
 
 .side-bar__avatar {
 height: 56px;
 width: 56px;
+border-radius: 50%;
 }
 
 .side-bar__avatar:hover {
 opacity: 80%;
+}
+
+.side-bar__sign-out{
+   margin-top: auto;
+   padding: 0;
+   background: none;
+   border: none;
+   cursor: pointer;
+   position: absolute;
+   bottom: 0;
+   left: 40px
+   
+}
+
+.side-bar__sign-out:hover {
+    opacity: 50%;
+}
+
+.side-bar__edit-icon{
+    height: 14px;
+    width: 14px;
+    margin-top: 20px;
+    cursor: pointer;
+}
+
+.side-bar__edit-button{
+    border: none;
+  background: none;
+    padding: 0;
+ cursor: pointer;
+  
+}
+
+.side-bar__edit-button:hover {
+opacity: 50%;
 }

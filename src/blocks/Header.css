@@ -46,7 +46,7 @@ opacity: 60%;
 
 .header__name {
     font-size: 20px;
-    margin: 8px 12px 7px 15px;
+    margin: 11px 12px 7px 15px;
     text-decoration: none;
     color: black;
     cursor: pointer;
@@ -57,10 +57,32 @@ opacity: 60%;
     opacity: 60%;
 }
 
+.header__avatar-default {
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    background-color: powderblue;
+}
+
+a:link{
+    text-decoration: none!important;
+  }
+
+.header__avatar-inital{
+    text-decoration: none;
+    color: white;
+    margin: 0;
+    padding-top: 8px;
+   
+}
+
 .header__avatar {
     height: 40px;
     width: 40px;
+    border-radius: 50%;
 }
+
+
 
 .header__avatar:hover {
     opacity: 80%;
@@ -104,6 +126,7 @@ opacity: 60%;
 
 .header__avatar {
     margin: 0 auto;
+    
 }
 
 .header__logo{

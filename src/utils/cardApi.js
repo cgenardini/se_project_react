@@ -13,13 +13,19 @@ const request = (url, options) => {
 
 export const getItems = () => {
   return request(`${baseUrl}/items`, {
-    headers: headers,
+    headers: {
+      authorization: `Bearer ${localStorage.getItem("token")}`,
+      "Content-Type": "application/json",
+    },
   });
 };
 
 export const addItem = ({ name, imageUrl, weather }) => {
   return request(`${baseUrl}/items`, {
-    headers: headers,
+    headers: {
+      authorization: `Bearer ${localStorage.getItem("token")}`,
+      "Content-Type": "application/json",
+    },
     method: "POST",
     body: JSON.stringify({
       name,
@@ -31,7 +37,30 @@ export const addItem = ({ name, imageUrl, weather }) => {
 
 export const deleteItem = (id) => {
   return request(`${baseUrl}/items/${id}`, {
-    headers: headers,
+    headers: {
+      authorization: `Bearer ${localStorage.getItem("token")}`,
+      "Content-Type": "application/json",
+    },
+    method: "DELETE",
+  });
+};
+
+export const likeItem = (id) => {
+  return request(`${baseUrl}/items/${id}/likes`, {
+    headers: {
+      authorization: `Bearer ${localStorage.getItem("token")}`,
+      "Content-Type": "application/json",
+    },
+    method: "PUT",
+  });
+};
+
+export const unlikeItem = (id) => {
+  return request(`${baseUrl}/items/${id}/likes`, {
+    headers: {
+      authorization: `Bearer ${localStorage.getItem("token")}`,
+      "Content-Type": "application/json",
+    },
     method: "DELETE",
   });
 };

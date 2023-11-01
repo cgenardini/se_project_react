@@ -3,7 +3,7 @@ import "../blocks/ProfileCardsContainer.css";
 import { ClothingCardsContext } from "../contexts/ClothingCardsContext";
 import CardsList from "./CardsList";
 
-function ClothesSection({ onClick, onCardSelect }) {
+function ClothesSection({ onClick, onCardSelect, onCardLike }) {
   const { clothingItems } = React.useContext(ClothingCardsContext);
   return (
     <div className="profile-container">
@@ -21,6 +21,7 @@ function ClothesSection({ onClick, onCardSelect }) {
         onCardSelect={onCardSelect}
         cards={clothingItems}
         cardsListStyle={"cards__list-profile"}
+        onCardLike={onCardLike}
       />
     </div>
   );

@@ -9,6 +9,14 @@ max-width: 496px;
   flex-direction: column;
 }
 
+.popup-form__container_login {
+    min-height: 304px;
+}
+
+.popup-form__container_edit-profile {
+    min-height: 304px;
+}
+
 
 .popup-form__header {
 text-align: start;
@@ -97,6 +105,10 @@ cursor: pointer;
     opacity: 100;
 }
 
+.popup-form__button-container {
+    display: flex;
+}
+
 .popup-form__button {
     width: 124px;
     height: 36px;
@@ -112,12 +124,35 @@ cursor: pointer;
     cursor: pointer;
     display: flex;
     justify-content: center;
-    align-items: center;
-   
-   
+    align-items: center;}
 
+.popup-form__button_add-item {
+
+
+}
+
+.popup-form__button_login {
+    width: 73px;
 }
 
 .popup-form__button:hover{
     opacity: 60%;
 }
+
+.popup__change_register{ 
+    color: black;
+    opacity: 50%;
+    border: none;
+    display: flex;
+    background: none;
+    height: 20px;
+    font-size: 16px;
+ margin: 8px 0 0 12px; 
+ padding: 0;
+ cursor: pointer;
+}
+
+.popup__change_register:hover{
+    opacity: 60%;
+}
+

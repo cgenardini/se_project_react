@@ -1,7 +1,20 @@
+import React from "react";
+
 import "../blocks/ItemModal.css";
 import "../blocks/popup.css";
+import { UserInfoContext } from "../contexts/UserInfoContext";
 
 function ItemModal({ selectedCard, onClose, handleDelete }) {
+  const { currentUser } = React.useContext(UserInfoContext);
+
+  const isOwn = selectedCard.owner._id === currentUser._id;
+
+  const itemDeleteButtonClass = `popup-item__delete-button ${
+    isOwn ? "item__delete-button_visible" : "item__delete-button_hidden"
+  }`;
+
+  console.log(selectedCard);
+
   return (
     <section className="popup">
       <div className="popup-item">
@@ -27,7 +40,7 @@ function ItemModal({ selectedCard, onClose, handleDelete }) {
           </div>
           <button
             type="button"
-            className="popup-item__delete-button"
+            className={itemDeleteButtonClass}
             onClick={handleDelete}
           >
             Delete item
