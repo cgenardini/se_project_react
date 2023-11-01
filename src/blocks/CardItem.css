@@ -19,7 +19,32 @@
     top: 16px;    
 }
 
-.card__description {
+.card__header_logged-in {
+    display: flex;
+    position: absolute;
+    right: 113px;
+    top: 16px;  
+}
+
+.card__header_logged-out {
+    display: flex;
+    position: absolute;
+    right: 138px;
+    top: 16px;  
+}
+
+.card__description_logged-in {
+    background-color: #fff;
+    border-radius: 4px;
+    padding: 0 12px;
+    margin: 0;
+    font-size: 16px;
+    font-weight: 700;
+    color: #000000;
+    opacity: 60%;
+}
+
+.card__description_logged-out {
     background-color: #fff;
     border-radius: 4px;
     padding: 0 12px;
@@ -42,3 +67,9 @@
     background-repeat: no-repeat;
 
   }
+
+  
+
+ .card__button-like_active {
+    background-image: url(../images/Like\ button.svg);
+ }

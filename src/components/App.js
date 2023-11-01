@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 
+import { useHistory } from "react-router-dom";
 import "../blocks/App.css";
 
 import logo from "../images/wtwr°.svg";
@@ -9,6 +10,7 @@ import Main from "./Main";
 import Profile from "./Profile";
 import Footer from "./Footer";
 import ItemModal from "./ItemModal";
+import ProtectedRoute from "./ProtectedRoute";
 
 import AddItemModal from "./AddItemModal";
 import {
@@ -20,15 +22,26 @@ import {
   getWeatherTempC,
 } from "../utils/weatherApi.js";
 import "../blocks/ModalWithForm.css";
-import { currentDate, userInfo } from "../utils/constants";
+import { currentDate, userInfo, jwt } from "../utils/constants";
 
-import { getItems, addItem, deleteItem } from "../utils/cardApi";
+import {
+  getItems,
+  addItem,
+  deleteItem,
+  likeItem,
+  unlikeItem,
+} from "../utils/cardApi";
 
 import { CurrentTemperatureUnitContext } from "../contexts/CurrentTemperatureUnitContext";
 import { ClothingCardsContext } from "../contexts/ClothingCardsContext";
+import { CurrentModal } from "../contexts/CurrentModal";
 
 import { Route, Switch } from "react-router-dom/cjs/react-router-dom.min";
 import { UserInfoContext } from "../contexts/UserInfoContext";
+import LoginModal from "./LoginModal";
+import RegisterModal from "./RegisterModal";
+import { checkToken, editUser } from "../utils/auth";
+import EditProfileModal from "./EditProfileModal";
 
 function App() {
   const [clothingItems, setClothingItems] = useState([]);
@@ -42,11 +55,17 @@ function App() {
   const [isDay, setIsDay] = useState(true);
   const [currentTempUnit, setCurrentTempUnit] = useState("F");
   const [isLoading, setIsLoading] = React.useState(false);
+  const [isLoggedIn, setIsLoggedIn] = React.useState(false);
+  const [currentUser, setCurrentUser] = React.useState({});
+  const history = useHistory();
 
   let buttonText = isLoading ? "Saving..." : "Add Garment";
+  let logInButtonText = "Log In";
+  let registerButtonText = "Register";
+  let editButtonText = "Save";
 
   const filteredCards = clothingItems.filter((item) => {
-    return item.weather.toLowerCase() === clothingTemp;
+    return item.weather === clothingTemp;
   });
 
   const handleToggleSwitchChange = () => {
@@ -57,8 +76,70 @@ function App() {
     }
   };
 
+  const handleLogIn = (e) => {
+    handleCheckToken();
+    handleClosePopup();
+    history.push("/profile");
+  };
+
+  const handleSignOut = (e) => {
+    e.preventDefault();
+    localStorage.removeItem("token");
+    setIsLoggedIn(false);
+    history.push("/");
+  };
+
+  const handleCheckToken = () => {
+    if (jwt) {
+      checkToken(jwt)
+        .then((data) => {
+          setCurrentUser(data.data);
+          setIsLoggedIn(true);
+        })
+        .catch((err) => {
+          console.error(err);
+        });
+    }
+  };
+
+  const handleLikeClick = ({ id, isLiked, user }) => {
+    const token = localStorage.getItem("jwt");
+
+    isLiked
+      ? unlikeItem(id)
+          .then((updatedCard) => {
+            setClothingItems((clothingItems) =>
+              clothingItems.map((c) => (c._id === id ? updatedCard.data : c))
+            );
+          })
+          .catch((err) => console.log(err))
+      : likeItem(id)
+          .then((updatedCard) => {
+            setClothingItems((clothingItems) =>
+              clothingItems.map((c) => (c._id === id ? updatedCard.data : c))
+            );
+          })
+          .catch((err) => console.log(err));
+  };
+
+  useEffect(() => {
+    handleCheckToken();
+  }, []);
+
   const handleOpenCreate = () => {
     setActivePopup("create");
+  };
+
+  const handleOpenSignUp = () => {
+    setActivePopup("register");
+  };
+
+  const handleOpenLogIn = () => {
+    setActivePopup("login");
+  };
+
+  const handleOpenEdit = () => {
+    setActivePopup("edit-profile");
   };
 
   const handleCardPreview = (card) => {
@@ -100,8 +181,9 @@ function App() {
 
     addItem(newItem)
       .then((item) => {
-        setClothingItems([item, ...clothingItems]);
+        setClothingItems((clothingItems) => [item.data, ...clothingItems]);
         handleClosePopup();
+        return item;
       })
       .catch(console.error)
       .finally(() => setIsLoading(false));
@@ -119,11 +201,12 @@ function App() {
 
   useEffect(() => {
     getItems()
-      .then((res) => {
-        res.reverse();
-        setClothingItems(res);
+      .then((data) => {
+        const newData = data.data;
+        const clothes = newData.reverse();
+        setClothingItems(clothes);
 
-        return res;
+        return clothes;
       })
       .catch(console.error);
   }, [setClothingItems]);
@@ -154,55 +237,88 @@ function App() {
   const currentTemperatureUnit = currentTempUnit;
   return (
     <div className="App" onClick={handleClickOutsideClose}>
-      <UserInfoContext.Provider value={{ userInfo }}>
-        <ClothingCardsContext.Provider value={{ filteredCards, clothingItems }}>
-          <CurrentTemperatureUnitContext.Provider
-            value={{ currentTemperatureUnit, handleToggleSwitchChange, temp }}
+      <CurrentModal.Provider value={{ activePopup, setActivePopup }}>
+        <UserInfoContext.Provider
+          value={{ currentUser, isLoggedIn, setCurrentUser }}
+        >
+          <ClothingCardsContext.Provider
+            value={{ filteredCards, clothingItems }}
           >
-            <Header
-              logoSrc={logo}
-              currentDate={currentDate}
-              currentCity={city}
-              onClick={handleOpenCreate}
-            />
-            <Switch>
-              <Route path="/profile">
-                <Profile
-                  onClick={handleOpenCreate}
-                  onCardSelect={handleCardPreview}
-                />
-              </Route>
-              <Route path="/">
-                <Main
-                  temp={temp}
-                  day={isDay}
-                  weather="sunny"
-                  onCardSelect={handleCardPreview}
-                  clothingTemp={clothingTemp}
-                />
-              </Route>
-            </Switch>
-            {activePopup === "preview" && (
-              <ItemModal
-                selectedCard={selectedCard}
-                onClose={handleClosePopup}
-                handleDelete={handleDelete}
+            <CurrentTemperatureUnitContext.Provider
+              value={{ currentTemperatureUnit, handleToggleSwitchChange, temp }}
+            >
+              <Header
+                logoSrc={logo}
+                currentDate={currentDate}
+                currentCity={city}
+                onClickAdd={handleOpenCreate}
+                onClickSignUp={handleOpenSignUp}
+                onClickLogIn={handleOpenLogIn}
               />
-            )}
+              <Switch>
+                <ProtectedRoute path="/profile">
+                  <Profile
+                    onClick={handleOpenCreate}
+                    onCardSelect={handleCardPreview}
+                    handleSignOut={handleSignOut}
+                    handleOpenEdit={handleOpenEdit}
+                    onCardLike={handleLikeClick}
+                  />
+                </ProtectedRoute>
+                <Route path="/">
+                  <Main
+                    temp={temp}
+                    day={isDay}
+                    weather="sunny"
+                    onCardSelect={handleCardPreview}
+                    clothingTemp={clothingTemp}
+                    onCardLike={handleLikeClick}
+                  />
+                </Route>
+              </Switch>
+              {activePopup === "preview" && (
+                <ItemModal
+                  selectedCard={selectedCard}
+                  onClose={handleClosePopup}
+                  handleDelete={handleDelete}
+                />
+              )}
 
-            {activePopup === "create" && (
-              <AddItemModal
-                isOpen={activePopup === "create"}
-                onAddItem={handleAddItem}
-                onClose={handleClosePopup}
-                buttonText={buttonText}
-              />
-            )}
+              {activePopup === "create" && (
+                <AddItemModal
+                  isOpen={activePopup === "create"}
+                  onAddItem={handleAddItem}
+                  onClose={handleClosePopup}
+                  buttonText={buttonText}
+                />
+              )}
 
-            <Footer />
-          </CurrentTemperatureUnitContext.Provider>
-        </ClothingCardsContext.Provider>
-      </UserInfoContext.Provider>
+              {activePopup === "login" && (
+                <LoginModal
+                  onClose={handleClosePopup}
+                  buttonText={logInButtonText}
+                  handleLogIn={handleLogIn}
+                />
+              )}
+
+              {activePopup === "register" && (
+                <RegisterModal
+                  onClose={handleClosePopup}
+                  buttonText={registerButtonText}
+                />
+              )}
+              {activePopup === "edit-profile" && (
+                <EditProfileModal
+                  onClose={handleClosePopup}
+                  buttonText={editButtonText}
+                />
+              )}
+
+              <Footer />
+            </CurrentTemperatureUnitContext.Provider>
+          </ClothingCardsContext.Provider>
+        </UserInfoContext.Provider>
+      </CurrentModal.Provider>
     </div>
   );
 }

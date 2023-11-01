@@ -106,3 +106,5 @@ export const processServerResponse = (res) => {
 
 export const baseUrl = "http://localhost:3001";
 export const headers = { "Content-Type": "application/json" };
+
+export const jwt = localStorage.getItem("token");

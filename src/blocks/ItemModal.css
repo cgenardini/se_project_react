@@ -50,3 +50,11 @@
   font-size: 20px;
   font-family: 'CabinetGroteskMed';
  }
+
+ .item__delete-button_visible {
+   visibility: visible;
+ }
+
+ .item__delete-button_hidden {
+   visibility: hidden;
+ }

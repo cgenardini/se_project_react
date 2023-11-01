@@ -31,6 +31,7 @@ function AddItemModal({ isOpen, onAddItem, onClose, buttonText }) {
       onSubmit={handleSubmit}
       formTitle="New Garment"
       buttonText={buttonText}
+      popupName="add-item"
     >
       <fieldset
         className="popup-form__fieldset modal__fieldset_type_edit"
