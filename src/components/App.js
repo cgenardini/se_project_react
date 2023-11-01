@@ -22,7 +22,7 @@ import {
   getWeatherTempC,
 } from "../utils/weatherApi.js";
 import "../blocks/ModalWithForm.css";
-import { currentDate, userInfo, jwt } from "../utils/constants";
+import { currentDate } from "../utils/constants";
 
 import {
   getItems,
@@ -57,6 +57,7 @@ function App() {
   const [isLoading, setIsLoading] = React.useState(false);
   const [isLoggedIn, setIsLoggedIn] = React.useState(false);
   const [currentUser, setCurrentUser] = React.useState({});
+
   const history = useHistory();
 
   let buttonText = isLoading ? "Saving..." : "Add Garment";
@@ -66,6 +67,10 @@ function App() {
 
   const filteredCards = clothingItems.filter((item) => {
     return item.weather === clothingTemp;
+  });
+
+  const ownCards = clothingItems.filter((item) => {
+    return item.owner._id === currentUser._id;
   });
 
   const handleToggleSwitchChange = () => {
@@ -90,9 +95,12 @@ function App() {
   };
 
   const handleCheckToken = () => {
-    if (jwt) {
+    if (localStorage.getItem("token")) {
+      const jwt = localStorage.getItem("token");
+      console.log(jwt);
       checkToken(jwt)
         .then((data) => {
+          console.log(data.data);
           setCurrentUser(data.data);
           setIsLoggedIn(true);
         })
@@ -242,7 +250,7 @@ function App() {
           value={{ currentUser, isLoggedIn, setCurrentUser }}
         >
           <ClothingCardsContext.Provider
-            value={{ filteredCards, clothingItems }}
+            value={{ filteredCards, clothingItems, ownCards }}
           >
             <CurrentTemperatureUnitContext.Provider
               value={{ currentTemperatureUnit, handleToggleSwitchChange, temp }}
