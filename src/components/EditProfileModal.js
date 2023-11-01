@@ -1,7 +1,6 @@
 import React from "react";
 import { useContext } from "react";
 import { editUser } from "../utils/auth";
-import { jwt } from "../utils/constants";
 
 import "../blocks/EditProfileModal.css";
 import ModalWithForm from "./ModalWithForm";
@@ -22,18 +21,15 @@ function EditProfileModal({ onClose, buttonText }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     handleEditUser(values);
-    console.log(values);
     onClose();
     return;
   };
 
   const handleEditUser = ({ name, avatar }) => {
-    console.log(jwt);
-
-    if (jwt) {
+    if (localStorage.getItem("token")) {
+      const jwt = localStorage.getItem("token");
       editUser({ name, avatar, token: jwt })
         .then((data) => {
-          console.log(data);
           setCurrentUser(data.data);
         })
         .catch(console.error);

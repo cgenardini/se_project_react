@@ -70,7 +70,7 @@ function App() {
   });
 
   const ownCards = clothingItems.filter((item) => {
-    return item.owner._id === currentUser._id;
+    return item.owner === currentUser._id || item.owner._id === currentUser._id;
   });
 
   const handleToggleSwitchChange = () => {
@@ -97,10 +97,9 @@ function App() {
   const handleCheckToken = () => {
     if (localStorage.getItem("token")) {
       const jwt = localStorage.getItem("token");
-      console.log(jwt);
+
       checkToken(jwt)
         .then((data) => {
-          console.log(data.data);
           setCurrentUser(data.data);
           setIsLoggedIn(true);
         })
