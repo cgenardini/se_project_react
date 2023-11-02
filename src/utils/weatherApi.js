@@ -21,7 +21,7 @@ export function getWeatherTempF(data) {
 
 export function getWeatherTempC(data) {
   const TempF = getWeatherTempF(data);
-  return Math.ceil(TempF * (5 / 9));
+  return Math.ceil((TempF - 32) * (5 / 9));
 }
 
 export function getCurrentCity(data) {
