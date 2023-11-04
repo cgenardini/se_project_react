@@ -7,9 +7,10 @@ import { UserInfoContext } from "../contexts/UserInfoContext";
 function ItemModal({ selectedCard, onClose, handleDelete }) {
   const { currentUser } = React.useContext(UserInfoContext);
 
-  const isOwn =
-    selectedCard.owner._id === currentUser._id ||
-    selectedCard.owner === currentUser._id;
+  const isOwn = selectedCard
+    ? selectedCard.owner._id === currentUser._id ||
+      selectedCard.owner === currentUser._id
+    : false;
 
   const itemDeleteButtonClass = `popup-item__delete-button ${
     isOwn ? "item__delete-button_visible" : "item__delete-button_hidden"
