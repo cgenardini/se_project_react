@@ -70,7 +70,7 @@ function App() {
   });
 
   const ownCards = clothingItems.filter((item) => {
-    return item.owner === currentUser._id || item.owner._id === currentUser._id;
+    return item.owner === currentUser?._id;
   });
 
   const handleToggleSwitchChange = () => {
@@ -110,7 +110,7 @@ function App() {
   };
 
   const handleLikeClick = ({ id, isLiked, user }) => {
-    const token = localStorage.getItem("jwt");
+    const token = localStorage.getItem("token");
 
     isLiked
       ? unlikeItem(id)
@@ -211,6 +211,7 @@ function App() {
       .then((data) => {
         const newData = data.data;
         const clothes = newData.reverse();
+
         setClothingItems(clothes);
 
         return clothes;
