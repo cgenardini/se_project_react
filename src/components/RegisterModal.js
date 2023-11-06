@@ -6,7 +6,7 @@ import { CurrentModal } from "../contexts/CurrentModal";
 import "../blocks/RegisterModal.css";
 import ModalWithForm from "./ModalWithForm";
 
-function RegisterModal({ onClose, buttonText }) {
+function RegisterModal({ onClose, buttonText, handleRegister }) {
   const { setActivePopup } = React.useContext(CurrentModal);
   const [values, setValues] = React.useState({
     name: "",
@@ -17,8 +17,7 @@ function RegisterModal({ onClose, buttonText }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    register(values);
-    setActivePopup("login");
+    handleRegister(values);
   };
 
   const handleChange = (e) => {

@@ -18,7 +18,10 @@ function Header({
 
   return (
     <header className="header">
-      <img alt="image" src={logoSrc} className="header__logo"></img>
+      <Link to="/">
+        <img alt="image" src={logoSrc} className="header__logo"></img>
+      </Link>
+
       <h1 className="header__date">
         {currentDate}, {currentCity}
       </h1>
@@ -32,7 +35,7 @@ function Header({
             {currentUser.name}
           </Link>
 
-          <Link to="/">
+          <Link to="/profile">
             {currentUser.avatar ? (
               <img
                 className="header__avatar"

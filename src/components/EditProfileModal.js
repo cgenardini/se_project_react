@@ -6,7 +6,7 @@ import "../blocks/EditProfileModal.css";
 import ModalWithForm from "./ModalWithForm";
 import { UserInfoContext } from "../contexts/UserInfoContext";
 
-function EditProfileModal({ onClose, buttonText }) {
+function EditProfileModal({ onClose, buttonText, handleEditUser }) {
   const { currentUser, setCurrentUser } = React.useContext(UserInfoContext);
   const [values, setValues] = React.useState({
     name: currentUser.name,
@@ -21,19 +21,8 @@ function EditProfileModal({ onClose, buttonText }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     handleEditUser(values);
-    onClose();
-    return;
-  };
 
-  const handleEditUser = ({ name, avatar }) => {
-    if (localStorage.getItem("token")) {
-      const jwt = localStorage.getItem("token");
-      editUser({ name, avatar, token: jwt })
-        .then((data) => {
-          setCurrentUser(data.data);
-        })
-        .catch(console.error);
-    }
+    return;
   };
 
   return (
