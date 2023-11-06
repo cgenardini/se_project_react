@@ -108,3 +108,14 @@ export const baseUrl = "http://localhost:3001";
 export const headers = { "Content-Type": "application/json" };
 
 export const jwt = localStorage.getItem("token");
+
+export const checkResponses = (res) => {
+  if (res.ok) {
+    return res.json();
+  }
+  return Promise.reject(`Error: ${res.status}`);
+};
+
+export const request = (url, options) => {
+  return fetch(url, options).then(checkResponses);
+};

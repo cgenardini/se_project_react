@@ -1,14 +1,9 @@
-import {
-  latitude,
-  longitude,
-  weatherApiKey,
-  processServerResponse,
-} from "./constants";
+import { latitude, longitude, weatherApiKey, request } from "./constants";
 
 export function getWeatherData() {
   const weatherApi =
-    fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=imperial&appid=${weatherApiKey} 
-    `).then(processServerResponse);
+    request(`https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=imperial&appid=${weatherApiKey} 
+    `);
 
   return weatherApi;
 }

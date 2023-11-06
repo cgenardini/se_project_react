@@ -3,12 +3,14 @@ import "../blocks/LoginModal.css";
 import { authorize } from "../utils/auth";
 import { useHistory } from "react-router-dom";
 import { CurrentModal } from "../contexts/CurrentModal";
+import { IsLoading } from "../contexts/IsLoadingContext";
 
 import ModalWithForm from "./ModalWithForm";
 
 function LoginModal({ onClose, buttonText, handleLogIn }) {
   const history = useHistory();
   const { setActivePopup } = React.useContext(CurrentModal);
+  const { setIsLoading } = React.useContext(IsLoading);
   const [values, setValues] = React.useState({
     email: "",
     password: "",
@@ -25,21 +27,19 @@ function LoginModal({ onClose, buttonText, handleLogIn }) {
     if (!email || !password) {
       return;
     }
+    setIsLoading(true);
     authorize({ email, password })
       .then(() => {
         handleLogIn();
         history.push("/profile");
+        setValues({ email: "", password: "" });
       })
       .catch((err) => {
         console.error(err);
       })
-      .finally(() => {
-        setValues({ email: "", password: "" });
-      });
+      .finally(() => setIsLoading(false));
   }
 
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
   return (
     <ModalWithForm
       onClose={onClose}
